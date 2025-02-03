@@ -1,0 +1,52 @@
+Abbreviation,State,Democrat,Republican,Interest_1,Interest_2,Winner
+CA,California,58.0,38.0,58.0,9.0,Democrat
+CO,Colorado,54.0,43.0,52.0,100.0,Democrat
+CT,Connecticut,56.0,42.0,56.0,14.0,Democrat
+DC,District of Columbia,90.0,6.0,70.0,,Democrat
+DE,Delaware,57.0,42.0,41.0,,Democrat
+HI,Hawaii,61.0,37.0,25.0,,Democrat
+IL,Illinois,55.0,44.0,56.0,9.0,Democrat
+MA,Massachusetts,61.0,36.0,47.0,9.0,Democrat
+MD,Maryland,63.0,34.0,60.0,14.0,Democrat
+NJ,New Jersey,52.0,46.0,75.0,9.0,Democrat
+NY,New York,56.0,44.0,89.0,9.0,Democrat
+OR,Oregon,55.0,41.0,43.0,9.0,Democrat
+RI,Rhode Island,56.0,42.0,37.0,23.0,Democrat
+VT,Vermont,64.0,32.0,41.0,,Democrat
+WA,Washington,57.0,39.0,43.0,9.0,Democrat
+ME,Maine,52.0,45.0,62.0,,Democrat
+NH,New Hampshire,51.0,48.0,54.0,,Democrat
+NM,New Mexico,52.0,46.0,52.0,23.0,Democrat
+VA,Virginia,52.0,46.0,60.0,9.0,Democrat
+MN,Minnesota,51.0,47.0,66.0,9.0,Democrat
+AZ,Arizona,47.0,52.0,91.0,14.0,Republican
+GA,Georgia,49.0,51.0,56.0,19.0,Republican
+MI,Michigan,48.0,50.0,83.0,9.0,Republican
+NV,Nevada,47.0,51.0,50.0,9.0,Republican
+PA,Pennsylvania,49.0,50.0,95.0,14.0,Republican
+WI,Wisconsin,49.0,50.0,75.0,14.0,Republican
+NC,North Carolina,48.0,51.0,100.0,9.0,Republican
+FL,Florida,43.0,56.0,95.0,14.0,Republican
+TX,Texas,42.0,56.0,70.0,14.0,Republican
+AK,Alaska,41.0,55.0,,,Republican
+AL,Alabama,34.0,65.0,64.0,14.0,Republican
+AR,Arkansas,34.0,64.0,56.0,9.0,Republican
+IA,Iowa,43.0,56.0,62.0,14.0,Republican
+ID,Idaho,30.0,67.0,66.0,,Republican
+IN,Indiana,40.0,59.0,52.0,19.0,Republican
+KS,Kansas,41.0,57.0,64.0,19.0,Republican
+KY,Kentucky,34.0,65.0,60.0,9.0,Republican
+LA,Louisiana,38.0,60.0,50.0,9.0,Republican
+MO,Missouri,40.0,58.0,64.0,9.0,Republican
+MS,Mississippi,38.0,61.0,41.0,14.0,Republican
+MT,Montana,38.0,58.0,54.0,28.0,Republican
+ND,North Dakota,31.0,67.0,50.0,,Republican
+NE,Nebraska,39.0,59.0,68.0,19.0,Republican
+OH,Ohio,44.0,55.0,54.0,9.0,Republican
+OK,Oklahoma,32.0,66.0,70.0,28.0,Republican
+SC,South Carolina,40.0,58.0,45.0,19.0,Republican
+SD,South Dakota,34.0,63.0,35.0,,Republican
+TN,Tennessee,34.0,64.0,50.0,9.0,Republican
+UT,Utah,38.0,59.0,58.0,14.0,Republican
+WV,West Virginia,28.0,70.0,50.0,,Republican
+WY,Wyoming,26.0,72.0,45.0,,Republican
