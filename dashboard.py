@@ -244,6 +244,5 @@ def conclusion_div(pvalue):
 
 # Start the Dash server
 if __name__ == "__main__":
-    # app.run_server()
-    # app.run_server()
-    server.run(host='0.0.0.0', debug=True)
+    server.run(debug=True)
+    # add host='0.0.0.0' to have access to the webpage on local network
