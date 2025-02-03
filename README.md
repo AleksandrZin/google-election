@@ -10,19 +10,21 @@ This project is a web dashboard that displays data and provides the results of a
 - __Google Trends Data__: This data is manually downloaded from Google Trends.
 
 # Usage
-To use the project, you can run the web dashboard locally and interact with the data and t-test results.
+You can see the dashboard [here](https://aleksandrzin.pythonanywhere.com) (recommended) or host it yourself.
+
+If you want to host it, you can run the web dashboard locally and interact with the data and t-test results.
 
 1. **Clone the Git Repository**
 
    To clone the repository, open your terminal and run the following command:
 
    ```
-   git clone https://github.com/your-username/vote-change-trend-analysis.git
+   git clone https://github.com/AleksandrZin/google-election
    ```
 
 2. **Go to the new folder**
     ```
-    cd US_election
+    cd google_election
     ```
 
 3. **Create a Virtual Environment**
@@ -66,8 +68,3 @@ To use the project, you can run the web dashboard locally and interact with the 
    ```
 
    The web dashboard will be accessible at `http://localhost:5000`.
-
-
-
-
-
