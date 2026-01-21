@@ -1,4 +1,4 @@
-# Post-Election Search Trends: Can Voters Change Their Minds?
+# US 2024 Post-Election Search Trends: Can Voters Change Their Minds?
 # Introduction
 This project is a web dashboard that displays data and provides the results of a t-test analysis, inspired by a Tik-Tok video discussing the increase in Google searches related to changing votes.
 
