@@ -216,7 +216,8 @@ def result_tab_update(question, party):
                 # "2 independent samples have identical average values. Identical variance of the populations is assumed."
             ]),
             html.P([
-                "If p-value is bigger than 0.05 there is a good probability, that the difference in average, that we observed, occurred by chance."
+                "The p-value is the probability of seeing a difference in averages at least this large if red and blue states actually had the same average interest. "
+                "If it is above 0.05, the observed difference could plausibly be due to chance, so we cannot conclude that a real difference exists, though this does not prove there is none."
             ]),
             html.P([
                 "p-value: ",
@@ -229,18 +230,14 @@ def result_tab_update(question, party):
 
 
 def conclusion_div(pvalue):
-    if pvalue > 0.05:
-        return html.P([
-            html.Span("Conclusion: ", className="fw-bolder"), "There is ",
-            html.Span("no ", className='fw-bold'),
-            "statistically significant reason to assume the difference in Google searches between red and blue states."
-        ])
-    else:
-        return html.P([
-            html.Span("Conclusion: ", className="fw-bolder"), "There ",
-            html.Span("is ", className='fw-bold'),
-            "statistically significant reason to assume the difference in Google searches between red and blue states."
-        ])
+    significant = pvalue <= 0.05
+    return html.P([
+        html.Span("Conclusion: ", className="fw-bolder"),
+        "The difference in average search interest between red and blue states ",
+        html.Span("is " if significant else "is not ", className='fw-bold'),
+        "statistically significant ",
+        f"(p {'≤' if significant else '>'} 0.05)."
+    ])
 
 
 # Start the Dash server
