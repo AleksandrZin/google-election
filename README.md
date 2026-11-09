@@ -1,6 +1,6 @@
 # US 2024 Post-Election Search Trends: Can Voters Change Their Minds?
 # Introduction
-This project is a web dashboard that displays data and provides the results of a t-test analysis, inspired by a Tik-Tok video discussing the increase in Google searches related to changing votes.
+This project is a web dashboard that displays data and provides the results of a Welch's t-test analysis, inspired by a Tik-Tok video discussing the increase in Google searches related to changing votes.
 
 # Data
 - __Votes Data__: Due to the unavailability of real-time vote data from providers at the project's inception, votes data is scraped from [Routers](https://www.reuters.com/graphics/USA-ELECTION/RESULTS/zjpqnemxwvx/). The scraping script can be found at scrap_script.py, and the raw data is saved at `data/raw`.
@@ -12,7 +12,7 @@ This project is a web dashboard that displays data and provides the results of a
 # Usage
 You can see the dashboard [here](https://aleksandrzin.pythonanywhere.com) (recommended) or host it yourself.
 
-If you want to host it, you can run the web dashboard locally and interact with the data and t-test results.
+If you want to host it, you can run the web dashboard locally and interact with the data and Welch's t-test results.
 
 1. **Clone the Git Repository**
 

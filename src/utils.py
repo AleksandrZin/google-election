@@ -99,10 +99,10 @@ def create_box_plot(question):
                                                 xaxis_title="State's Winner")
 
 
-# t-test
-def ttest(question):
+# Welch's t-test (does not assume equal variances)
+def welch_ttest(question):
     int_dem = geo_df[geo_df.Winner == "Democrat"][question].dropna()
     int_rep = geo_df[geo_df.Winner == "Republican"][question].dropna()
 
-    return (stats.ttest_ind(int_dem,
-                            int_rep), np.mean(int_dem), np.mean(int_rep))
+    return (stats.ttest_ind(int_dem, int_rep, equal_var=False),
+            np.mean(int_dem), np.mean(int_rep))

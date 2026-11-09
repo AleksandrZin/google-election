@@ -196,7 +196,7 @@ def result_tab_update(question, party):
     scatter_fig = utils.create_scatter_plot(party, question)
     box_fig = utils.create_box_plot(question)
 
-    stats, avg_dem_int, avg_rep_int = utils.ttest(question)
+    stats, avg_dem_int, avg_rep_int = utils.welch_ttest(question)
     div = html.Div(
         [
             html.P([
@@ -210,7 +210,7 @@ def result_tab_update(question, party):
                           className='text-danger fw-bolder')
             ]),
             html.P([
-                "We tested the null hypothesis that the two samples have identical average values, assuming equal variances."
+                "We tested the null hypothesis that the two samples have identical average values using Welch's t-test, which does not assume equal variances."
                 # html.Span("Null hypothesis: ", className='fw-bold'),
                 # "2 independent samples have identical average values. Identical variance of the populations is assumed."
             ]),
