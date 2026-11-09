@@ -25,11 +25,11 @@ def main():
     df_election["Abbreviation"] = df_election["State"].map(state_long2abr)
 
     # Loading Google Trends Data
-    df_GT_can_map = load_map_df("data/raw/GT_map_can.csv")
-    df_GT_president_map = load_map_df("data/raw/GT_map_president.csv")
+    df_GT_can_map = load_map_df("data/raw/GT_2024/GT_region_can_US_2024-10-13_2024-11-13.csv")
+    df_GT_president_map = load_map_df("data/raw/GT_2024/GT_region_president_US_2024-10-13_2024-11-13.csv")
 
-    df_GT_can_timeline = load_timeline_df("data/raw/GT_timeline_can.csv")
-    df_GT_president_timeline = load_timeline_df("data/raw/GT_timeline_president.csv")
+    df_GT_can_timeline = load_timeline_df("data/raw/GT_2024/GT_timeline_can_US_2024-10-13_2024-11-13.csv")
+    df_GT_president_timeline = load_timeline_df("data/raw/GT_2024/GT_timeline_president_US_2024-10-13_2024-11-13.csv")
 
     # Combining Data
     # Geographic Data

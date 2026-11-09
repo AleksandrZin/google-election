@@ -7,7 +7,7 @@ This project is a web dashboard that displays data and provides the results of a
 
 - __Geo Data__: This dataset is taken from [MappingAPI](https://github.com/PublicaMundi/MappingAPI).
 
-- __Google Trends Data__: This data is manually downloaded from Google Trends.
+- __Google Trends Data__: This data is manually downloaded from Google Trends. The data used by the dashboard (`data/raw/GT_2024/`) was downloaded in November 2024, so the timeline ends on 2024-11-13: no later data existed yet, and searches were still near their peak at that point. A later re-download (`data/raw/GT_2026/`) is kept for reference but not used.
 
 # Usage
 You can see the dashboard [here](https://aleksandrzin.pythonanywhere.com) (recommended) or host it yourself.
