@@ -35,10 +35,24 @@ def create_timeline_plot():
                       "Interest_1": "#42dcc4",
                       "Interest_2": "#42DC77"
                   },
-                  markers=True).add_vline(
-                      x='2024-11-05',
-                      line_dash="dash",
-                  )
+                  markers=True)
+
+    # Event markers. Annotations are added separately because
+    # add_vline(annotation_text=...) fails on string date axes.
+    events = [
+        ('2024-11-05', "Election day", "right"),
+        ('2024-11-06', "Race is called. 5:34AM ET", "left"),
+    ]
+    for date, text, anchor in events:
+        fig.add_vline(x=date, line_dash="dash", line_color="grey")
+        fig.add_annotation(x=date,
+                           y=1,
+                           yref="paper",
+                           text=text,
+                           showarrow=False,
+                           xanchor=anchor,
+                           yanchor="top",
+                           xshift=-4 if anchor == "right" else 4)
     fig.update_layout(legend=dict(orientation="h",
                                   yanchor="bottom",
                                   y=1.02,

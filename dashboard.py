@@ -81,7 +81,7 @@ map_input = html.Div(
 # Timeline tab
 def timeline_tab():
     big_text = '''
-    On November 5th 2025 the US presidential election took place. 
+    On November 5th 2024 the US presidential election took place. 
     Directly after it Google Trends show an increase of searches regarding a possibility of the vote change.
     Did search trends differ between red and blue states post-election? 
     We analyzed the popularity of two search terms: 'Can I change my vote?' (Search Term 1) and 'Change vote presidential election.' (Search Term 2)
@@ -89,6 +89,7 @@ def timeline_tab():
     small_text = '''
     Interest in Google Trends represents the relative popularity of a term. 
     A score of 100 signifies the peak popularity during the time range.
+    The data was downloaded in November 2024, so the timeline ends on November 13th, the latest day available at the time.
     '''
     child = dbc.Container([
         dbc.Row(
