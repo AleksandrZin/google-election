@@ -12,6 +12,10 @@ An interactive dashboard comparing Google searches about changing one's vote in 
 
 Right after the 2024 election, a TikTok video pointed out a jump in Google searches about changing one's vote. Did this interest differ between states that voted Republican (red) and states that voted Democrat (blue)?
 
+## Project goals
+
+This personal project started as a way to check a claim from a TikTok video with real data. It was also a way to learn Dash and Plotly, practise scraping and cleaning data, and apply a statistical test to a real question. The 2026 update was made with Claude Code, as practice in working with AI coding agents.
+
 ## Findings
 
 Neither search term shows a statistically significant difference between red and blue states.
