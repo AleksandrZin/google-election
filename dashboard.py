@@ -145,6 +145,128 @@ def map_tab():
     return child
 
 
+QUESTION_LABELS = {
+    "Interest_1": "Can I change my vote?",
+    "Interest_2": "Change vote presidential election",
+}
+
+
+# Plain-language explanation of the results (collapsed by default).
+# The body is filled in by result_tab_update so it matches the selected search term.
+def plain_language_note():
+    return dbc.Accordion(
+        dbc.AccordionItem(html.Div(id="plain_language_note"),
+                          title="What does this mean in plain words?"),
+        start_collapsed=True,
+        style=vertical_step_style)
+
+
+def plain_language_text(question, pvalue, avg_dem, avg_rep):
+    term = QUESTION_LABELS[question]
+    sizes = utils.group_stats(question)["count"]
+    n_dem, n_rep = sizes.get("Democrat", 0), sizes.get("Republican", 0)
+
+    if round(avg_dem) == round(avg_rep):
+        comparison = (f"red and blue states searched \"{term}\" about equally on average "
+                      f"({avg_rep:.0f} vs {avg_dem:.0f}). ")
+    elif avg_rep > avg_dem:
+        comparison = (f"red states searched \"{term}\" more on average than blue states "
+                      f"({avg_rep:.0f} vs {avg_dem:.0f}). ")
+    else:
+        comparison = (f"blue states searched \"{term}\" more on average than red states "
+                      f"({avg_dem:.0f} vs {avg_rep:.0f}). ")
+    comparison = comparison[0].upper() + comparison[1:]
+
+    if pvalue > 0.05:
+        heading = "The difference could be chance. "
+        meaning = (
+            "A difference this size could plausibly appear by chance, so we can't say red and "
+            "blue states really searched differently. This also doesn't prove they searched the "
+            f"same way. With only {n_dem} blue and {n_rep} red states, the test can miss small real "
+            "differences. ")
+    else:
+        heading = "The difference is unlikely to be chance. "
+        meaning = (
+            "A difference this large would be unlikely if red and blue states really searched "
+            "the same way. It doesn't tell us why they differ. ")
+    return html.P([
+        html.Strong(heading), comparison, meaning,
+        "See the Caveats tab for more on the limits of this analysis."
+    ], className="mb-0")
+
+
+def describe_missing(question):
+    missing = utils.missing_regions(question)
+    if not missing:
+        return "none"
+    states = [s for s in missing if s != "District of Columbia"]
+    parts = []
+    if states:
+        parts.append(f"{len(states)} state{'s' if len(states) != 1 else ''} "
+                     f"({', '.join(sorted(states))})")
+    if "District of Columbia" in missing:
+        parts.append("the District of Columbia")
+    return " and ".join(parts)
+
+
+# Caveats tab: limitations and nuances of the research
+def caveats_tab():
+    sizes_1 = utils.group_stats("Interest_1")["count"]
+    spread_2 = utils.group_stats("Interest_2")["std"]
+    points = [
+        [html.Strong("The scores are relative, not counts. "),
+         "Google Trends rates each state from 0 to 100 by how popular a search was there "
+         "compared with all searches in that state. A big state like California doesn't "
+         "score higher just because more people live there."],
+        [html.Strong("Some states are missing. "),
+         "Where there were too few searches, Google doesn't report a score, so those states "
+         "aren't included. Search Term 1: " + describe_missing("Interest_1") + ". "
+         "Search Term 2: " + describe_missing("Interest_2") + "."],
+        [html.Strong("The data is a snapshot from November 2024. "),
+         "The search data covers October 13th to November 13th 2024 and was downloaded in "
+         "November 2024, so it ends there. Interest in \"Can I change my vote?\" was still near "
+         "its peak on the last day, so we don't see when it faded."],
+        [html.Strong("Google Trends numbers change on re-download. "),
+         "Google builds them from a sample of searches, so downloading the same query again "
+         "gives somewhat different numbers, especially for rare searches."],
+        [html.Strong("The two search terms aren't on the same scale. "),
+         "Each term was downloaded separately and scaled to its own peak of 100, so a score of "
+         "50 for one term can't be compared with 50 for the other."],
+        [html.Strong("Vote figures may not be final. "),
+         "Vote shares were collected from Reuters' results page and may differ slightly from "
+         "the final certified results, that where not available."],
+    ]
+    analysis_points = [
+        [html.Strong("A state's color doesn't tell us who searched. "),
+         "Every state has voters from both parties, so a search from a red state could have "
+         "come from a Democrat, and the other way round."],
+        [html.Strong("Searching isn't necessarily regretting. "),
+         "People search these phrases out of curiosity, because of news or social media posts, "
+         "or to check the rules. A search doesn't necessarily mean someone wanted to change their vote."],
+        [html.Strong("Correlation, not cause. "),
+         "Even if red and blue states did search differently, this analysis couldn't say why."],
+        [html.Strong("Why Welch's t-test. "),
+         f"The red and blue groups differ in size (for Search Term 1, "
+         f"{sizes_1.get('Republican', 0)} red vs {sizes_1.get('Democrat', 0)} blue states), "
+         f"and their scores can be spread out differently (for Search Term 2, a standard "
+         f"deviation of {spread_2.get('Democrat', float('nan')):.1f} in blue states vs "
+         f"{spread_2.get('Republican', float('nan')):.1f} in red states). Welch's "
+         "t-test doesn't assume both groups are equally spread, so it suits this data better "
+         "than the standard t-test."],
+    ]
+
+    def bullet_list(items):
+        return html.Ul([html.Li(p, className="mb-2") for p in items], className="fs-5")
+
+    return dbc.Container(dbc.Row(dbc.Col([
+        html.H4("About the data", className="text-primary"),
+        bullet_list(points),
+        html.H4("About the analysis", className="text-primary"),
+        bullet_list(analysis_points),
+    ], lg=8, md=12, className="mx-auto")),
+                         style=vertical_step_style)
+
+
 # Result tub
 def result_tub():
     child = dbc.Container([
@@ -156,6 +278,8 @@ def result_tub():
             html.Div(id="result_tab_markdown",
                      className="fs-4 text-center",
                      style=vertical_step_style)),
+        dbc.Row(dbc.Col(plain_language_note(), lg=8, md=12,
+                        className="mx-auto")),
         dbc.Row([
             dbc.Col(dcc.Graph(id="scatter_graph"), lg=6, md=12),
             dbc.Col(dcc.Graph(id="box_graph"), lg=6, md=12)
@@ -175,7 +299,8 @@ app.layout = dbc.Container([
     dbc.Tabs([
         dbc.Tab(label="Timeline", children=timeline_tab()),
         dbc.Tab(label="Map", children=map_tab()),
-        dbc.Tab(label="Result", children=result_tub())
+        dbc.Tab(label="Result", children=result_tub()),
+        dbc.Tab(label="Caveats", children=caveats_tab())
     ])
 ])
 
@@ -191,6 +316,7 @@ def map_tab_update(column):
 # Result Update
 @callback(Output("scatter_graph", "figure"), Output("box_graph", "figure"),
           Output("result_tab_markdown", "children"),
+          Output("plain_language_note", "children"),
           Input("result_tab_interest", "value"),
           Input("result_tab_vote", "value"))
 def result_tab_update(question, party):
@@ -226,7 +352,8 @@ def result_tab_update(question, party):
             conclusion_div(stats.pvalue)
         ],
         className='fs-4')
-    return (scatter_fig, box_fig, div)
+    note = plain_language_text(question, stats.pvalue, avg_dem_int, avg_rep_int)
+    return (scatter_fig, box_fig, div, note)
 
 
 def conclusion_div(pvalue):

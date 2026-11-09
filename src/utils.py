@@ -113,6 +113,18 @@ def create_box_plot(question):
                                                 xaxis_title="State's Winner")
 
 
+# Number of states and standard deviation of interest per winner group
+# (states without a Google Trends score are excluded, as in welch_ttest)
+def group_stats(question):
+    return geo_df.dropna(subset=[question]).groupby("Winner")[question].agg(
+        ["count", "std"])
+
+
+# States (and DC) for which Google Trends reported no score
+def missing_regions(question):
+    return geo_df.loc[geo_df[question].isna(), "State"].tolist()
+
+
 # Welch's t-test (does not assume equal variances)
 def welch_ttest(question):
     int_dem = geo_df[geo_df.Winner == "Democrat"][question].dropna()
