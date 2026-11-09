@@ -234,7 +234,7 @@ def caveats_tab():
          "50 for one term can't be compared with 50 for the other."],
         [html.Strong("Vote figures may not be final. "),
          "Vote shares were collected from Reuters' results page and may differ slightly from "
-         "the final certified results, that where not available."],
+         "the final certified results, which were not yet available."],
     ]
     analysis_points = [
         [html.Strong("A state's color doesn't tell us who searched. "),
