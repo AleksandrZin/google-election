@@ -4,8 +4,6 @@ An interactive dashboard comparing Google searches about changing one's vote in 
 
 **Live dashboard:** https://aleksandrzin.pythonanywhere.com
 
-> **Note:** the PythonAnywhere deployment is currently not working. To see the dashboard, [run it locally](#run-locally).
-
 ![Timeline tab](docs/screenshot-timeline.png)
 
 ## Question
